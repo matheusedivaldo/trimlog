@@ -42,7 +42,7 @@ class ContatoController {
             ";
             $alternativo = "Assunto: {$params['assunto']}</h1>" . PHP_EOL . "Nome: {$params['nome']}" . PHP_EOL . "Contato: {$params['email']}" . PHP_EOL . "Mensagem: {$params['mensagem']}";
 
-            $response = Email::enviar('contato@superlog.online', $assunto, $mensagem, $alternativo);
+            $response = Email::enviar('contato@trimlog.online', $assunto, $mensagem, $alternativo);
         } catch (Exception $e) {
             $erro = $e->getMessage();
         }

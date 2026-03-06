@@ -1,4 +1,4 @@
-# super-log
+# TrimLog
 
 ## Project setup
 ```

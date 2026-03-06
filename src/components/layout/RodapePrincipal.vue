@@ -11,9 +11,9 @@
             <i class="fa-solid fa-location-dot"></i>
             Rua Padre Aureliano, 59, Vila Silviania, Carapicuíba, SP
           </a>
-          <a href="mailto:contato@superlog.online">
+          <a href="mailto:contato@trimlog.online">
             <i class="fa-solid fa-envelope"></i>
-            contato@superlog.online
+            contato@trimlog.online
           </a>
           <a href="tel:+55 (11) 5198-0889">
             <i class="fa-solid fa-phone"></i>
@@ -36,7 +36,7 @@
             <li>
               <i class="fa-solid fa-envelopes-bulk"></i>
               &nbsp;
-              <a href="https://mailpro.uol.com.br/superlog.online">E-mail</a>
+              <a href="https://mailpro.uol.com.br/trim.online">E-mail</a>
             </li>
           </ul>
         </nav>

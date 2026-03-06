@@ -4,7 +4,7 @@
       TrimLog
     </TituloPrincipal>
     <TextoDestaque variacao="branco">
-      Transporte e logística com eficiência.
+      A logística que sua empresa precisa.
     </TextoDestaque>
   </ContainerSecao>
 </template>
