@@ -6,7 +6,7 @@
     </TituloPrincipal>
 
     <p>
-      Na <strong>Super Log</strong>, entendemos a importância de armazenar e
+      Na <strong>TrimLog</strong>, entendemos a importância de armazenar e
       transportar suas mercadorias com eficiência e segurança. Somos
       especialistas em oferecer soluções abrangentes para todas as suas
       necessidades logísticas, desde armazenamento até entrega rápida. Aqui está

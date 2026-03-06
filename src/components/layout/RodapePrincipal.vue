@@ -3,7 +3,7 @@
     <div class="container">
       <section class="coluna">
         <img class="logo" :src="require('@/assets/img/logos/logo-clara-texto-claro.svg')"
-          alt="Super Log Transporte e Logística">
+          alt="TrimLog Transporte e Logística">
       </section>
       <section class="coluna">
         <address class="endereco">
@@ -43,7 +43,7 @@
       </section>
     </div>
     <p class="copyright">
-      Copyright &copy; 2024 - Super Log - Todos os direitos reservados.
+      Copyright &copy; 2026 - TrimLog - Todos os direitos reservados.
     </p>
 
   </footer>

@@ -6,8 +6,8 @@
         variacao="branco" 
         :tamanho="5"
       >
-        <img class="logo" :src="require('@/assets/img/logos/logo-minimalista.svg')" alt="Logo da Super Log: caminhão laranja">
-        <span class="texto">Super Log</span>
+        <img class="logo" :src="require('@/assets/img/logos/logo-minimalista.svg')" alt="Logo da TrimLog caminhão laranja">
+        <span class="texto">TrimLog</span>
       </TituloPrincipal>
       <MenuSuspenso :responsivo="true">
         <ItemMenu href="#rastreamento" @click.native="closeMenu">Rastrear</ItemMenu>
