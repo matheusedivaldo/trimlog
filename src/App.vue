@@ -3,16 +3,18 @@
     <CabecalhoPrincipal :flutuante="true" />
     <router-view></router-view>
     <RodapePrincipal />
+    <BotaoWhatsapp />
   </div>
 </template>
 
 <script>
 import CabecalhoPrincipal from "@/components/layout/CabecalhoPrincipal.vue";
 import RodapePrincipal from "@/components/layout/RodapePrincipal.vue";
+import BotaoWhatsapp from "@/components/common/BotaoWhatsapp.vue";
 
 export default {
   name: "App",
-  components: { RodapePrincipal, CabecalhoPrincipal },
+  components: { RodapePrincipal, CabecalhoPrincipal, BotaoWhatsapp},
 };
 </script>
 
