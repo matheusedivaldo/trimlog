@@ -11,9 +11,9 @@
             <i class="fa-solid fa-location-dot"></i>
             Rua Padre Aureliano, 59, Vila Silviania, Carapicuíba, SP
           </a>
-          <a href="mailto:contato@trimlog.online">
+          <a href="mailto:contato@trimlog.com.br">
             <i class="fa-solid fa-envelope"></i>
-            contato@trimlog.online
+            contato@trimlog.com.br
           </a>
           <a href="tel:+55 (11) 5198-0889">
             <i class="fa-solid fa-phone"></i>
