@@ -1,17 +1,15 @@
 <template>
   <div class="cabecalho-principal-container">
     <header class="cabecalho-principal" :class="{ flutuante }">
-      <TituloPrincipal 
-        tag="h1" 
-        variacao="branco" 
-        :tamanho="5"
-      >
-        <img class="logo" :src="require('@/assets/img/logos/logo-minimalista.svg')" alt="Logo da TrimLog caminhão laranja">
+      <TituloPrincipal tag="h1" variacao="branco" :tamanho="5">
+        <img class="logo" :src="require('@/assets/img/logos/logo-minimalista.svg')"
+          alt="Logo da TrimLog caminhão laranja">
         <span class="texto">TrimLog</span>
       </TituloPrincipal>
       <MenuSuspenso :responsivo="true">
         <ItemMenu href="#rastreamento" @click.native="closeMenu">Rastrear</ItemMenu>
         <ItemMenu href="#servicos" @click.native="closeMenu">Serviços</ItemMenu>
+        <ItemMenu href="https://lp.trimlog.com.br" @click.native="closeMenu">Franquias</ItemMenu>
         <ItemMenu href="#contato" @click.native="closeMenu">Contato</ItemMenu>
         <ItemMenu :custom="true">
           <MenuSuspenso :custom-toggler="true">
