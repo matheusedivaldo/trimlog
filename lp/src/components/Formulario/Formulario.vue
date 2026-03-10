@@ -94,7 +94,8 @@ const handleSubmit = () => {
 
 h2 {
     color: var(--escuro);
-    font-size: 2.5rem;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    line-height: 1.2;
     margin: 15px 0;
 }
 
@@ -170,7 +171,9 @@ select {
     border: 1px solid var(--secundario);
     border-radius: 4px;
     font-family: inherit;
+    font-size: 1rem;
     outline: none;
+    width: 100%;
 }
 
 input:focus,
@@ -187,7 +190,7 @@ select:focus {
     font-weight: 700;
     font-size: 1rem;
     cursor: pointer;
-    transition: background var(--dinamico), transform var(--dinamico);
+    transition: all var(--dinamico);
     margin-top: 10px;
 }
 
@@ -231,18 +234,38 @@ select:focus {
 }
 
 @media (max-width: 992px) {
+    .contato {
+        padding: 60px 0;
+    }
+
     .contato-grid {
         grid-template-columns: 1fr;
+        gap: 40px;
         text-align: center;
     }
 
     .info-links {
         align-items: center;
-        margin-bottom: 40px;
+        margin-bottom: 20px;
+    }
+
+    .form-wrapper {
+        padding: 25px;
     }
 
     .form-row {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .form-wrapper {
+        padding: 20px;
     }
 }
 </style>
