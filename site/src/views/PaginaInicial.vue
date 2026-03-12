@@ -1,9 +1,9 @@
 <template>
   <main id="inicio">
     <SliderSobre />
-    <SecaoRastreamento />
     <SecaoServicos />
     <ParceirosIntegracoes />
+    <SecaoRastreamento />
     <SecaoContato />
   </main>
 </template>

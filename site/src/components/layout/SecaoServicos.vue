@@ -1,24 +1,24 @@
 <template>
-  <ContainerSecao id="servicos" :img="require('@/assets/img/banners/2.png')">
-    <TituloPrincipal tag="h2" :tamanho="2" variacao="branco">
-      <i class="fa-solid fa-handshake"></i>
-      Serviços
-    </TituloPrincipal>
-
-    <p>
-      Na <strong>TrimLog</strong>, entendemos a importância de armazenar e
-      transportar suas mercadorias com eficiência e segurança. Somos
-      especialistas em oferecer soluções abrangentes para todas as suas
-      necessidades logísticas, desde armazenamento até entrega rápida. Aqui está
-      um vislumbre dos serviços que oferecemos:
-    </p>
+  <ContainerSecao id="servicos" class="secao-servicos">
+    <header class="servicos-header animate-up">
+      <span class="tag">Soluções</span>
+      <TituloPrincipal tag="h2" :tamanho="2" variacao="escuro">
+        Nossos <strong>Serviços</strong>
+      </TituloPrincipal>
+      <p class="subtitulo">
+        Soluções inteligentes e personalizadas para otimizar sua cadeia de suprimentos com total segurança.
+      </p>
+    </header>
 
     <div class="grid-servicos">
-      <CartaoEscuro v-for="servico in servicos" :key="servico.titulo">
-        <i slot="icone" :class="servico.icone"></i>
-        <h3 slot="titulo">{{ servico.titulo }}</h3>
-        <p slot="conteudo">{{ servico.descricao }}</p>
-      </CartaoEscuro>
+      <div v-for="(servico, index) in servicos" :key="servico.titulo" class="servico-card animate-up"
+        :style="{ animationDelay: (0.2 * (index + 1)) + 's' }">
+        <div class="card-icon">
+          <i :class="servico.icone"></i>
+        </div>
+        <h3>{{ servico.titulo }}</h3>
+        <p>{{ servico.descricao }}</p>
+      </div>
     </div>
   </ContainerSecao>
 </template>
@@ -26,11 +26,9 @@
 <script>
 import ContainerSecao from "@/components/layout/ContainerSecao.vue";
 import TituloPrincipal from "@/components/common/TituloPrincipal.vue";
-import CartaoEscuro from "@/components/common/CartaoEscuro.vue";
 
 export default {
   components: {
-    CartaoEscuro,
     ContainerSecao,
     TituloPrincipal,
   },
@@ -39,27 +37,23 @@ export default {
       servicos: [
         {
           icone: "fa-solid fa-warehouse",
-          titulo: "Armazenagem Especializada",
-          descricao:
-            "Confie em nós para armazenar suas mercadorias com cuidado e precisão. Nossos depósitos de mercadorias são espaços seguros e modernos, prontos para receber e proteger seus produtos.",
+          titulo: "Armazenagem",
+          descricao: "Espaços modernos e seguros para proteger seus produtos com precisão e cuidado total.",
         },
         {
           icone: "fa-solid fa-gear",
-          titulo: "Logística Eficiente e Personalizada",
-          descricao:
-            "Nossa equipe especializada em organização logística trabalha em estreita colaboração com você para garantir que sua cadeia de suprimentos funcione perfeitamente. Do planejamento à execução, estamos aqui para otimizar cada detalhe do seu processo logístico.",
+          titulo: "Gestão Logística",
+          descricao: "Planejamento e execução estratégica para otimizar cada detalhe da sua operação.",
         },
         {
           icone: "fa-solid fa-truck-fast",
-          titulo: "Transporte Rodoviário Confiável",
-          descricao:
-            "Nossa frota de veículos modernos e equipe experiente garantem que suas cargas sejam entregues com segurança e pontualidade, onde quer que precise. De pequenas encomendas a cargas volumosas, estamos preparados para atender às suas necessidades de transporte.",
+          titulo: "Transporte B2B",
+          descricao: "Frota moderna para entregas rápidas e pontuais, de pequenos volumes a grandes cargas.",
         },
         {
           icone: "fa-solid fa-building",
-          titulo: "Armazéns Gerais de Alto Padrão",
-          descricao:
-            "Como emissários de warrants confiáveis, oferecemos serviços de armazenagem que garantem a segurança e a integridade de suas mercadorias. Nosso compromisso com a qualidade se reflete em cada aspecto de nossas operações.",
+          titulo: "Armazéns Gerais",
+          descricao: "Segurança e integridade garantidas com emissão de warrants e alto padrão operacional.",
         },
       ],
     };
@@ -68,19 +62,100 @@ export default {
 </script>
 
 <style scoped>
-#servicos {
-  color: var(--branco);
+.secao-servicos {
+  background-color: var(--branco);
+}
+
+.servicos-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 50px;
+}
+
+.tag {
+  color: var(--destaque);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.subtitulo {
+  color: var(--escuro-destaque);
+  font-size: 1.1rem;
+  line-height: 1.5;
 }
 
 .grid-servicos {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
 }
 
-.grid-servicos .cartao-escuro {
-  max-width: 330px;
+.servico-card {
+  background: var(--secundario);
+  padding: 40px 30px;
+  border-radius: 8px;
+  transition: all var(--dinamico);
+  border-bottom: 4px solid transparent;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.servico-card:hover {
+  transform: translateY(-10px);
+  background: white;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+  border-bottom-color: var(--destaque);
+}
+
+.card-icon {
+  color: var(--destaque);
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+}
+
+h3 {
+  color: var(--escuro);
+  font-size: 1.25rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.servico-card p {
+  color: var(--escuro-destaque);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@keyframes upIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-up {
+  animation: upIn 0.8s ease backwards;
+}
+
+@media (max-width: 768px) {
+  .servicos-header {
+    margin-bottom: 40px;
+  }
+
+  .servico-card {
+    padding: 30px;
+    text-align: center;
+  }
 }
 </style>
