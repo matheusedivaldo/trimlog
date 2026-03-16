@@ -1,6 +1,5 @@
 <template>
     <div class="whatsapp-container">
-
         <span class="whatsapp-text">
             Fale conosco
         </span>
@@ -8,27 +7,21 @@
         <a :href="linkWhats" class="btn-whatsapp" target="_blank" title="Fale conosco no WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
-
     </div>
 </template>
 
 <script>
 export default {
     name: "BotaoWhatsapp",
-
     data() {
         return {
             numero: "5511912969307",
-            mensagem:
-                "Olá! Gostaria de mais informações sobre os serviços da TrimLog.",
+            mensagem: "Olá! Estou navegando no site da TrimLog e gostaria de falar com um consultor agora.",
         };
     },
-
     computed: {
         linkWhats() {
-            return `https://wa.me/${this.numero}?text=${encodeURIComponent(
-                this.mensagem
-            )}`;
+            return `https://wa.me/${this.numero}?text=${encodeURIComponent(this.mensagem)}`;
         },
     },
 };
@@ -46,21 +39,24 @@ export default {
 
 .whatsapp-text {
     background: white;
-    padding: 8px 12px;
-    border-radius: 6px;
-    margin-right: 10px;
+    padding: 8px 15px;
+    border-radius: 50px;
+    margin-right: 12px;
     font-size: 14px;
+    font-weight: 600;
     color: #333;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     opacity: 0;
     transform: translateX(10px);
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
 }
 
 .btn-whatsapp {
     background: #25D366;
     color: white;
-    font-size: 30px;
+    font-size: 32px;
     width: 60px;
     height: 60px;
     border-radius: 50%;
@@ -68,9 +64,9 @@ export default {
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
     animation: pulse 2s infinite;
-    transition: 0.3s;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .whatsapp-container:hover .whatsapp-text {
@@ -79,7 +75,7 @@ export default {
 }
 
 .btn-whatsapp:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(10deg);
 }
 
 @keyframes pulse {
@@ -93,6 +89,17 @@ export default {
 
     100% {
         box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+@media (max-width: 768px) {
+    .whatsapp-text {
+        display: none;
+    }
+
+    .whatsapp-container {
+        bottom: 20px;
+        right: 20px;
     }
 }
 </style>
