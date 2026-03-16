@@ -6,7 +6,8 @@
                     <img src="../../assets/img/logos/logo-texto-claro.svg" alt="TrimLog">
                 </div>
                 <div class="contact-top">
-                    <a href="https://wa.me/5511912969307" target="_blank" class="whatsapp-link">
+                    <a :href="linkWhatsapp" target="_blank" class="whatsapp-link">
+                        <i class="fa-brands fa-whatsapp"></i>
                         (11) 91296-9307
                     </a>
                 </div>
@@ -22,7 +23,10 @@
                     </p>
 
                     <div class="hero-cta">
-                        <a href="#formulario" class="btn-primary btn-pulse">QUERO SER FRANQUEADO</a>
+                        <a :href="linkWhatsapp" target="_blank" class="btn-primary btn-pulse">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            QUERO SER FRANQUEADO
+                        </a>
                         <span class="cta-note">*Modelo validado em unidade piloto</span>
                     </div>
                 </div>
@@ -30,9 +34,17 @@
                 <div class="hero-features">
                     <div class="feature-card animate-up">
                         <span class="value">R$ 121k</span>
-                        <span class="label">Investimento</span>
+                        <span class="label">Faturamento Médio (1 ano)</span>
                     </div>
                     <div class="feature-card animate-up delay-1">
+                        <span class="value">18% a 25%</span>
+                        <span class="label">Lucratividade Média</span>
+                    </div>
+                    <div class="feature-card animate-up delay-2">
+                        <span class="value">R$ 100k</span>
+                        <span class="label">Investimento Estimado</span>
+                    </div>
+                    <div class="feature-card animate-up delay-3">
                         <span class="value">16 Meses</span>
                         <span class="label">Payback Estimado</span>
                     </div>
@@ -41,6 +53,12 @@
         </div>
     </section>
 </template>
+
+<script setup>
+const telefone = "5511912969307";
+const mensagem = "Olá! Vim pela landing page da TrimLog e gostaria de receber mais informações sobre como me tornar um franqueado.";
+const linkWhatsapp = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+</script>
 
 <style scoped>
 .hero {
@@ -82,7 +100,15 @@
     text-decoration: none;
     font-weight: 500;
     font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     transition: color var(--dinamico);
+}
+
+.whatsapp-link i {
+    color: #25d366;
+    font-size: 1.3rem;
 }
 
 .whatsapp-link:hover {
@@ -94,7 +120,7 @@
     grid-template-columns: 1.2fr 0.8fr;
     gap: 60px;
     align-items: center;
-    padding: 80px 0;
+    padding: 40px 0 80px;
 }
 
 .tag {
@@ -138,10 +164,16 @@ p {
     text-decoration: none;
     font-weight: 700;
     font-size: 1.1rem;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 12px;
     width: fit-content;
     transition: all var(--dinamico);
     box-shadow: 0 4px 15px rgba(215, 72, 2, 0.3);
+}
+
+.btn-primary i {
+    font-size: 1.4rem;
 }
 
 .btn-pulse {
@@ -180,13 +212,13 @@ p {
 .hero-features {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 15px;
 }
 
 .feature-card {
     background: rgba(53, 64, 65, 0.8);
     backdrop-filter: blur(10px);
-    padding: 35px;
+    padding: 20px 30px;
     border-left: 5px solid var(--destaque);
     border-radius: 0 8px 8px 0;
     transition: transform 0.4s ease;
@@ -199,16 +231,16 @@ p {
 .feature-card .value {
     display: block;
     color: var(--branco);
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     font-weight: 800;
     line-height: 1;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .feature-card .label {
     color: var(--destaque-pastel);
     text-transform: uppercase;
-    font-size: 0.9rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 1px;
 }
@@ -218,7 +250,15 @@ p {
 }
 
 .delay-1 {
-    animation-delay: 0.3s;
+    animation-delay: 0.2s;
+}
+
+.delay-2 {
+    animation-delay: 0.4s;
+}
+
+.delay-3 {
+    animation-delay: 0.6s;
 }
 
 @keyframes fadeInUp {
@@ -241,25 +281,55 @@ p {
     .hero-grid {
         grid-template-columns: 1fr;
         text-align: center;
+        padding: 20px 0 60px;
     }
 
     .btn-primary {
         margin: 0 auto;
+        width: 100%;
+        justify-content: center;
     }
 
     .hero-features {
-        flex-direction: row;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-top: 40px;
+    }
+
+    .feature-card {
+        padding: 20px 15px;
+        text-align: left;
+    }
+
+    .feature-card .value {
+        font-size: 1.5rem;
     }
 
     p {
         margin: 20px auto 40px;
     }
+
+    .whatsapp-link {
+        justify-content: center;
+    }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
     .hero-features {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+    }
+
+    .logo img {
+        height: 45px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    p {
+        font-size: 1.1rem;
     }
 }
 </style>
