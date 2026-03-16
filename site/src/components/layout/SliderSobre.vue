@@ -11,9 +11,9 @@
           </TextoDestaque>
 
           <div class="acoes-hero">
-            <BotaoPrincipal @click.native="irParaFranquia" class="btn-franquia-pulsar">
-              <i class="fas fa-rocket icone-botao"></i>
-              Quero ser um franqueado
+            <BotaoPrincipal @click.native="irParaWhatsAppCliente" class="btn-franquia-pulsar">
+              <i class="fab fa-whatsapp icone-botao"></i>
+              Quero ser um cliente
             </BotaoPrincipal>
           </div>
         </div>
@@ -58,9 +58,16 @@ export default {
     TextoDestaque,
     BotaoPrincipal,
   },
+  data() {
+    return {
+      whatsappNumero: "5511912969307",
+      mensagemCliente: "Olá! Vim pelo site da TrimLog e gostaria de solicitar uma cotação/atendimento para minha empresa."
+    }
+  },
   methods: {
-    irParaFranquia() {
-      window.open("https://lp.trimlog.com.br", "_blank");
+    irParaWhatsAppCliente() {
+      const url = `https://wa.me/${this.whatsappNumero}?text=${encodeURIComponent(this.mensagemCliente)}`;
+      window.open(url, "_blank");
     }
   }
 };
@@ -235,6 +242,9 @@ export default {
   font-weight: 700;
   transition: all var(--dinamico);
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .btn-franquia-pulsar:hover {
@@ -247,6 +257,11 @@ export default {
   .hero-content {
     grid-template-columns: 1fr;
     text-align: center;
+  }
+
+  .acoes-hero {
+    display: flex;
+    justify-content: center;
   }
 
   .no-break {
@@ -279,6 +294,7 @@ export default {
 
   .btn-franquia-pulsar {
     width: 100%;
+    justify-content: center;
   }
 }
 </style>
