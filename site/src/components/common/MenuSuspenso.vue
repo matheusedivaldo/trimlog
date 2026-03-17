@@ -132,7 +132,7 @@
       top: 120%;
       width: max-content;
       height: max-content;
-      background-color: var(--preto-50);
+      background-color: var( --escuro-destaque);
       padding: 1rem;
       border-radius: 5px;
     }
