@@ -36,7 +36,7 @@
             <li>
               <i class="fa-solid fa-envelopes-bulk"></i>
               &nbsp;
-              <a href="https://mailpro.uol.com.br/trim.online">E-mail</a>
+              <a href="mailto:contato@trimlog.com.br">E-mail</a>
             </li>
           </ul>
         </nav>
