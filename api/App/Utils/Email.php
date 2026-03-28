@@ -15,6 +15,7 @@ class Email
         //Server settings
         $mail->SMTPDebug = SMTP::DEBUG_OFF;
         $mail->isSMTP();
+        $mail->CharSet    = 'UTF-8';
         $mail->Host       = EMAIL_HOST;
         $mail->SMTPAuth   = true;
         $mail->Username   = EMAIL_USERNAME;
