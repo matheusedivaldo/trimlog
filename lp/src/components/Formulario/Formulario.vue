@@ -94,7 +94,8 @@ const handleSubmit = async () => {
             nome: form.value.nome,
             email: form.value.email,
             assunto: form.value.assunto,
-            mensagem: corpoMensagem
+            mensagem: corpoMensagem,
+            origem: 'Landing Page Franquia'
         });
 
         if (response.data.sucesso) {

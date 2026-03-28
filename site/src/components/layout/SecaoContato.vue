@@ -61,7 +61,10 @@ export default {
 
       Swal.showLoading();
 
-      this.$http.post('/contato/enviar-email', this.contato)
+      this.$http.post('/contato/enviar-email', {
+        ...this.contato,
+        origem: 'Site Institucional'
+      })
         .then(response => {
           const { sucesso, mensagem } = response.data;
           Swal.fire({
