@@ -27,29 +27,29 @@
                     <form @submit.prevent="handleSubmit" class="form-leads">
                         <div class="form-group">
                             <label>Nome Completo</label>
-                            <input type="text" placeholder="Seu nome" required>
+                            <input type="text" v-model="form.nome" placeholder="Seu nome" required>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label>WhatsApp</label>
-                                <input type="tel" placeholder="(00) 00000-0000" required>
+                                <input type="tel" v-model="form.whatsapp" placeholder="(00) 00000-0000" required>
                             </div>
                             <div class="form-group">
                                 <label>E-mail Corporativo</label>
-                                <input type="email" placeholder="seu@email.com" required>
+                                <input type="email" v-model="form.email" placeholder="seu@email.com" required>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label>Cidade de Interesse</label>
-                                <input type="text" placeholder="Ex: Sorocaba/SP" required>
+                                <input type="text" v-model="form.cidade" placeholder="Ex: Sorocaba/SP" required>
                             </div>
                             <div class="form-group">
                                 <label>Capital Disponível</label>
-                                <select required>
-                                    <option value="" disabled selected>Selecione um valor</option>
+                                <select v-model="form.capital" required>
+                                    <option value="" disabled>Selecione um valor</option>
                                     <option value="100-150k">R$ 100k a R$ 150k</option>
                                     <option value="150-200k">R$ 150k a R$ 200k</option>
                                     <option value="above-200k">Acima de R$ 200k</option>
@@ -66,11 +66,48 @@
 </template>
 
 <script setup>
-const handleSubmit = () => {
-    alert('Interesse enviado com sucesso! Nossa equipe entrará em contato.')
+import { ref } from 'vue';
+import http from '../../config/http';
+import Swal from 'sweetalert2';
+
+const form = ref({
+    nome: '',
+    whatsapp: '',
+    email: '',
+    cidade: '',
+    capital: '',
+    assunto: 'Novo Lead de Franquia'
+});
+
+const handleSubmit = async () => {
+    Swal.fire({ title: 'Enviando...', didOpen: () => Swal.showLoading() });
+
+    try {
+        const corpoMensagem = `
+            Lead vindo da Landing Page:
+            WhatsApp: ${form.value.whatsapp}
+            Cidade: ${form.value.cidade}
+            Capital: ${form.value.capital}
+        `;
+
+        const response = await http.post('/contato/enviar-email', {
+            nome: form.value.nome,
+            email: form.value.email,
+            assunto: form.value.assunto,
+            mensagem: corpoMensagem
+        });
+
+        if (response.data.sucesso) {
+            Swal.fire("Sucesso!", "Seu interesse foi registrado. Entraremos em contato em breve!", "success");
+            form.value = { nome: '', whatsapp: '', email: '', cidade: '', capital: '', assunto: 'Novo Lead de Franquia' };
+        } else {
+            Swal.fire("Ops!", response.data.mensagem, "error");
+        }
+    } catch (error) {
+        Swal.fire("Erro", "Não foi possível enviar seus dados. Tente novamente mais tarde.", "error");
+    }
 }
 </script>
-
 <style scoped>
 .contato {
     background-color: var(--branco);
