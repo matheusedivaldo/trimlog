@@ -21,7 +21,7 @@ class Email
         $mail->Password   = EMAIL_SENHA;
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port       = EMAIL_PORTA;
-        $mail->setFrom(EMAIL_USERNAME, 'Super Log');
+        $mail->setFrom(EMAIL_USERNAME, 'TrimLog');
 
         $mail->addAddress($destinatario);
 
@@ -29,6 +29,14 @@ class Email
         $mail->Subject = $assunto;
         $mail->Body    = $corpo;
         $mail->AltBody = $corpoAlt;
+
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
 
         return $mail->send();
     }

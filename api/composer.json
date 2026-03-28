@@ -1,0 +1,13 @@
+{
+    "name": "trimlog/api",
+    "description": "API de envio de e-mails TrimLog",
+    "type": "project",
+    "require": {
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/"
+        }
+    }
+}

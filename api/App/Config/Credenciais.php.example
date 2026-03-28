@@ -1,0 +1,6 @@
+<?php
+// Exemplo de configuração - Preencha com os dados reais e salve como Credenciais.php
+const EMAIL_HOST = '';
+const EMAIL_USERNAME = '';
+const EMAIL_SENHA = '';
+const EMAIL_PORTA = 465;

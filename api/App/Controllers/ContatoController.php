@@ -8,14 +8,16 @@ use App\Utils\Request;
 use App\Utils\Response;
 use Exception;
 
-class ContatoController {
-    public function enviarEmail() {
+class ContatoController
+{
+    public function enviarEmail()
+    {
         $params = Request::jsonParams();
 
         try {
             if (!isset($params['assunto'], $params['email'], $params['mensagem'], $params['nome']))
                 throw new Exception('Os campos não foram passados corretamente');
-            
+
             $assunto = "{$params['nome']} - {$params['assunto']}";
             $mensagem = "
 
@@ -42,7 +44,7 @@ class ContatoController {
             ";
             $alternativo = "Assunto: {$params['assunto']}</h1>" . PHP_EOL . "Nome: {$params['nome']}" . PHP_EOL . "Contato: {$params['email']}" . PHP_EOL . "Mensagem: {$params['mensagem']}";
 
-            $response = Email::enviar('contato@trimlog.online', $assunto, $mensagem, $alternativo);
+            $response = Email::enviar('contato@trimlog.com.br', $assunto, $mensagem, $alternativo);
         } catch (Exception $e) {
             $erro = $e->getMessage();
         }

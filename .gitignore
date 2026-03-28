@@ -1,0 +1,5 @@
+# Ignorar credenciais da API
+api/App/Config/Credenciais.php
+
+# Ignorar a pasta de dependências do PHP
+api/vendor/

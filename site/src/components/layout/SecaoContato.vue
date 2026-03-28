@@ -59,23 +59,31 @@ export default {
         return false;
       }
 
-      const fetch = response => {
-        const { sucesso = false, mensagem = 'Ocorreu um erro ao realizar o envio do e-mail, tente novamente mais tarde...' } = response.data;
-        Swal.fire({
-          title: sucesso ? "Sucesso" : "Ops!", 
-          text: mensagem,
-          icon: sucesso ? "success": "error"
-        });
-      }
+      Swal.showLoading();
 
       this.$http.post('/contato/enviar-email', this.contato)
-        .catch(fetch)
-        .then(fetch);
+        .then(response => {
+          const { sucesso, mensagem } = response.data;
+          Swal.fire({
+            title: sucesso ? "Sucesso" : "Ops!",
+            text: mensagem || 'E-mail enviado com sucesso!',
+            icon: sucesso ? "success" : "error"
+          });
+          if (sucesso) this.limpar();
+        })
+        .catch(error => {
+          console.error(error);
+          Swal.fire({
+            title: "Erro de Conexão",
+            text: "Não foi possível contatar o servidor da API. Verifique se o Wamp está ligado.",
+            icon: "error"
+          });
+        });
 
-      this.limpar();
       return true;
     },
     limpar() {
+      this.contato = { nome: null, email: null, assunto: null, mensagem: null };
       this.$refs.form.$emit("limpar");
     },
   },
