@@ -33,7 +33,8 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label>WhatsApp</label>
-                                <input type="tel" v-model="form.whatsapp" placeholder="(00) 00000-0000" required>
+                                <input type="tel" v-model="form.telefone" placeholder="(00) 00000-0000"
+                                    @input="maskWhatsapp" maxlength="15" required>
                             </div>
                             <div class="form-group">
                                 <label>E-mail Corporativo</label>
@@ -72,12 +73,31 @@ import Swal from 'sweetalert2';
 
 const form = ref({
     nome: '',
-    whatsapp: '',
+    telefone: '',
     email: '',
     cidade: '',
     capital: '',
     assunto: 'Novo Lead de Franquia'
 });
+
+const maskWhatsapp = (e) => {
+    let value = e.target.value.replace(/\D/g, '');
+
+    if (value.length > 11) value = value.slice(0, 11);
+
+    const isCelular = value.length > 10;
+
+    if (value.length === 0) {
+        form.value.telefone = '';
+    } else if (value.length <= 2) {
+        form.value.telefone = `(${value}`;
+    } else if (value.length <= (isCelular ? 7 : 6)) {
+        form.value.telefone = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+    } else {
+        const meio = isCelular ? 7 : 6;
+        form.value.telefone = `(${value.slice(0, 2)}) ${value.slice(2, meio)}-${value.slice(meio)}`;
+    }
+};
 
 const handleSubmit = async () => {
     Swal.fire({ title: 'Enviando...', didOpen: () => Swal.showLoading() });
@@ -85,7 +105,7 @@ const handleSubmit = async () => {
     try {
         const corpoMensagem = `
             Lead vindo da Landing Page:
-            WhatsApp: ${form.value.whatsapp}
+            WhatsApp: ${form.value.telefone}
             Cidade: ${form.value.cidade}
             Capital: ${form.value.capital}
         `;
@@ -93,6 +113,7 @@ const handleSubmit = async () => {
         const response = await http.post('/contato/enviar-email', {
             nome: form.value.nome,
             email: form.value.email,
+            telefone: form.value.telefone,
             assunto: form.value.assunto,
             mensagem: corpoMensagem,
             origem: 'Landing Page Franquia'
@@ -100,14 +121,14 @@ const handleSubmit = async () => {
 
         if (response.data.sucesso) {
             Swal.fire("Sucesso!", "Seu interesse foi registrado. Entraremos em contato em breve!", "success");
-            form.value = { nome: '', whatsapp: '', email: '', cidade: '', capital: '', assunto: 'Novo Lead de Franquia' };
+            form.value = { nome: '', telefone: '', email: '', cidade: '', capital: '', assunto: 'Novo Lead de Franquia' };
         } else {
             Swal.fire("Ops!", response.data.mensagem, "error");
         }
     } catch (error) {
         Swal.fire("Erro", "Não foi possível enviar seus dados. Tente novamente mais tarde.", "error");
     }
-}
+};
 </script>
 <style scoped>
 .contato {
