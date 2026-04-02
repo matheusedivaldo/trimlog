@@ -3,7 +3,7 @@
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
-                    <img src="../../assets/img/logos/logo-texto-claro.svg" alt="TrimLog">
+                    <img src="../../assets/img/logos/logo-minimalista.svg" alt="TrimLog">
                 </div>
                 <div class="contact-top">
                     <a :href="linkWhatsapp" target="_blank" class="whatsapp-link">
