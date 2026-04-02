@@ -7,19 +7,17 @@
 
     <ContainerForm @submit="enviarContato" ref="form">
       <CampoTexto nome="Nome" name="nome" id="nome-contato" v-model="contato.nome" />
-      <CampoTexto nome="E-mail" name="email" id="email-contato" v-model="contato.email" />
+      <CampoTexto nome="E-mail" name="email" id="email-contato" type="email" v-model="contato.email" />
+      <CampoTexto nome="Telefone" name="telefone" id="telefone-contato" v-model="contato.telefone" v-mask="maskAtual"
+        placeholder="(00) 00000-0000" />
       <CampoTexto nome="Assunto" name="assunto" id="assunto-contato" v-model="contato.assunto" />
       <CampoTexto nome="Mensagem" name="mensagem" id="mensagem-contato" type="textarea" :rows="8"
         v-model="contato.mensagem" />
     </ContainerForm>
 
     <div class="grupo-botoes">
-      <BotaoSecundario class="btn-limpar" @click="limpar">
-        Limpar
-      </BotaoSecundario>
-      <BotaoPrincipal class="btn-enviar" @click="enviarContato">
-        Enviar
-      </BotaoPrincipal>
+      <BotaoSecundario class="btn-limpar" @click="limpar">Limpar</BotaoSecundario>
+      <BotaoPrincipal class="btn-enviar" @click="enviarContato">Enviar</BotaoPrincipal>
     </div>
   </ContainerSecao>
 </template>
@@ -32,30 +30,42 @@ import CampoTexto from "@/components/common/CampoTexto.vue";
 import BotaoPrincipal from "@/components/common/BotaoPrincipal.vue";
 import BotaoSecundario from "@/components/common/BotaoSecundario.vue";
 import Swal from "sweetalert2";
+import { VueMaskDirective } from 'v-mask';
 
 export default {
-  components: {
-    BotaoSecundario,
-    BotaoPrincipal,
-    CampoTexto,
-    ContainerForm,
-    ContainerSecao,
-    TituloPrincipal,
-  },
+  directives: { mask: VueMaskDirective },
+  components: { BotaoSecundario, BotaoPrincipal, CampoTexto, ContainerForm, ContainerSecao, TituloPrincipal },
   data() {
     return {
       contato: {
         nome: null,
         email: null,
+        telefone: '',
         assunto: null,
         mensagem: null,
       },
+      maskAtual: '(##) ####-####'
     };
   },
+  watch: {
+    'contato.telefone'(val) {
+      if (!val) return;
+      const numeros = val.replace(/\D/g, '');
+      this.maskAtual = numeros.length > 10 ? '(##) #####-####' : '(##) ####-####';
+    }
+  },
   methods: {
+    validarEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    },
     async enviarContato() {
       if (Object.values(this.contato).some((valor) => !valor)) {
         Swal.fire("Atenção", "Preencha todos os campos!", "warning");
+        return false;
+      }
+      if (!this.validarEmail(this.contato.email)) {
+        Swal.fire("E-mail Inválido", "Por favor, insira um e-mail válido.", "error");
         return false;
       }
 
@@ -76,17 +86,11 @@ export default {
         })
         .catch(error => {
           console.error(error);
-          Swal.fire({
-            title: "Erro de Conexão",
-            text: "Não foi possível contatar o servidor da API. Verifique se o Wamp está ligado.",
-            icon: "error"
-          });
+          Swal.fire({ title: "Erro de Conexão", text: "Falha ao contatar a API.", icon: "error" });
         });
-
-      return true;
     },
     limpar() {
-      this.contato = { nome: null, email: null, assunto: null, mensagem: null };
+      this.contato = { nome: null, email: null, telefone: '', assunto: null, mensagem: null };
       this.$refs.form.$emit("limpar");
     },
   },
@@ -120,17 +124,21 @@ export default {
   }
 
   .campo-texto:nth-child(3) {
-    grid-area: assunto;
+    grid-area: telefone;
   }
 
   .campo-texto:nth-child(4) {
+    grid-area: assunto;
+  }
+
+  .campo-texto:nth-child(5) {
     grid-area: mensagem;
   }
 
   .container-form {
     display: grid;
     grid-template-areas:
-      "nome email email"
+      "nome email telefone"
       "assunto assunto assunto"
       "mensagem mensagem mensagem";
   }
@@ -142,10 +150,7 @@ export default {
     flex-direction: column;
   }
 
-  .btn-limpar {
-    flex-basis: auto;
-  }
-
+  .btn-limpar,
   .btn-enviar {
     flex-basis: auto;
   }

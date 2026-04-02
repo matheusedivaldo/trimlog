@@ -15,7 +15,7 @@ class ContatoController
         $params = Request::jsonParams();
 
         try {
-            if (!isset($params['assunto'], $params['email'], $params['mensagem'], $params['nome'])) {
+            if (!isset($params['assunto'], $params['email'], $params['mensagem'], $params['nome'], $params['telefone'])) {
                 throw new Exception('Os campos não foram passados corretamente');
             }
 
@@ -56,6 +56,10 @@ class ContatoController
                                     </td>
                                 </tr>
                                 <tr>
+                                    <td style=\"padding: 15px; border-bottom: 1px solid #dedede; font-weight: 700; color: #354041;\">Telefone:</td>
+                                    <td style=\"padding: 15px; border-bottom: 1px solid #dedede; color: #151F20;\">{$params['telefone']}</td>
+                                </tr>
+                                <tr>
                                     <td style=\"padding: 15px; border-bottom: 1px solid #dedede; font-weight: 700; color: #354041;\">Assunto:</td>
                                     <td style=\"padding: 15px; border-bottom: 1px solid #dedede; color: #151F20;\">{$params['assunto']}</td>
                                 </tr>
@@ -85,7 +89,7 @@ class ContatoController
             </div>
             ";
 
-            $alternativo = "Origem: {$origem}" . PHP_EOL . "Nome: {$params['nome']}" . PHP_EOL . "E-mail: {$params['email']}" . PHP_EOL . "Mensagem: " . strip_tags($params['mensagem']);
+            $alternativo = "Origem: {$origem}" . PHP_EOL . "Nome: {$params['nome']}" . PHP_EOL . "E-mail: {$params['email']}" . PHP_EOL . "Telefone: {$params['telefone']}" . PHP_EOL . "Mensagem: " . strip_tags($params['mensagem']);
 
             Email::enviar('contato@trimlog.com.br', $assuntoEmail, $mensagem, $alternativo);
         } catch (Exception $e) {
