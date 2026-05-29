@@ -276,6 +276,8 @@ p {
 @media (max-width: 992px) {
     .hero {
         background-attachment: scroll;
+        background-image: linear-gradient(to right, rgba(21, 31, 32, 0.95), rgba(21, 31, 32, 0.7)),
+            url('../../assets/img/banners/2.jpeg');
     }
 
     .hero-grid {
