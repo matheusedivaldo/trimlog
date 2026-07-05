@@ -7,9 +7,9 @@
       </section>
       <section class="coluna">
         <address class="endereco">
-          <a href="https://maps.app.goo.gl/hwaafM1YurNWA2yL8" target="_blank">
+          <a href="https://maps.app.goo.gl/BU5q7rwUSKcJtYre6" target="_blank">
             <i class="fa-solid fa-location-dot"></i>
-            Rua Padre Aureliano, 59, Vila Silviania, Carapicuíba, SP
+            R. Casa Branca, 43 - Vila Sul Americana, Carapicuíba, SP
           </a>
           <a href="mailto:contato@trimlog.com.br">
             <i class="fa-solid fa-envelope"></i>
